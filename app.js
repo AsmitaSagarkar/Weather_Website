@@ -2,22 +2,26 @@ const express = require("express");
 const app = express();
 const https = require("https");
 const bodyParser = require("body-parser");
+const ejs = require("ejs");
 
-
+app.set("view engine","ejs");
+app.use(express.static("public"));
 
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.get("/" , function(req,res){
     res.sendFile(__dirname + "/index.html");    
 });
+
 app.post("/",function(req,res){
     //console.log("post received");
     //console.log(req.body.cityName);
     const query = req.body.cityName;
     const apiKey = "37b8ac2578a4715200e8300ccea8e007";
     const unit = "metric";
+    
     const url = "https://api.openweathermap.org/data/2.5/weather?q="+query+"&appid="+apiKey+"&units="+unit;
-    const url1 = "https://pro.openweathermap.org/data/2.5/forecast/hourly?q="+query+"&appid="+apiKey+"&units="+unit;
+    // const url1 = "https://pro.openweathermap.org/data/2.5/forecast/hourly?q="+query+"&appid="+apiKey+"&units="+unit;
     //res.send("server is up and running");
     https.get(url,function(response){
         console.log(response.statusCode);
@@ -29,7 +33,7 @@ app.post("/",function(req,res){
             const feels_like = weatherData.main.feels_like;
             const min_temp=weatherData.main.temp_min;
             const max_temp = weatherData.main.temp_max;
-            const pressure = weatherData.main.pressure;
+            // const pressure = weatherData.main.pressure;
             const humidity = weatherData.main.humidity;
             const weatherDescription = weatherData.weather[0].description;
             const icon = weatherData.weather[0].icon;
@@ -46,28 +50,16 @@ app.post("/",function(req,res){
             res.send();
         });
     });
-    // app.get("/5daysweather" , function(req,res){
-    //     res.sendFile(__dirname + "/index1.html");    
-    // });
-
-    // app.post("/5daysweather",function(req,res){
-
-    // const query = req.body.cityName;
-    // const apiKey = "37b8ac2578a4715200e8300ccea8e007";
-    // const unit = "metric";
-    // const url1 = "https://pro.openweathermap.org/data/2.5/forecast/hourly?q="+query+"&appid="+apiKey+"&units="+unit;
     
-    // response.on("data",function(data){
-    //     const weatherData = JSON.parse(data);
-    //     const temp = weatherData.list[0].main.temp;
-    //     res.write("<h1>The temperature in "+query+" is " + temp + " degree celcius </h1>");
-
-    // });
-    
-
-    // });
     
 });
+
+app.get("/5daysweather",function(req,res){
+    res.render("index1")
+});
+app.post("/5daysweather",function(req,res){
+   
+})
 
 
 
