@@ -29,7 +29,7 @@ app.post("/",function(req,res){
 
         response.on("data" , function(data){
             const weatherData = JSON.parse(data);
-             temp = weatherData.main.temp;
+            temp = weatherData.main.temp;
             
             const feels_like = weatherData.main.feels_like;
             const min_temp=weatherData.main.temp_min;
@@ -65,8 +65,22 @@ app.post("/5daysWeather",function(req,res){
     const query = req.body.cityName1;
     const apiKey = "37b8ac2578a4715200e8300ccea8e007";
     const unit = "metric";
+    const url = "https://api.openweathermap.org/data/2.5/forecast?q="+query+"&appid="+apiKey+"&units="+unit;
+
+    https.get(url,function(response){
+        response.on("data",function(data){
+            
+            const weatherData = JSON.parse(data.list);
+
+            const temp = weatherData.list[0].main.temp;
+            res.send(temp)
+            
+
+            
+        })
+    })
     
-    res.send(query);
+    
 
 })
 
