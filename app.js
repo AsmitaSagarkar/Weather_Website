@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const https = require("https");
 const bodyParser = require("body-parser");
+const request = require("request");
 // const ejs = require("ejs");
 
 app.set("view engine","ejs");
@@ -29,7 +30,8 @@ app.post("/",function(req,res){
 
         response.on("data" , function(data){
             const weatherData = JSON.parse(data);
-            temp = weatherData.main.temp;
+            // console.log(weatherData);
+            const temp = weatherData.main.temp;
             
             const feels_like = weatherData.main.feels_like;
             const min_temp=weatherData.main.temp_min;
@@ -61,28 +63,36 @@ app.get("/5daysWeather",function(req,res){
     res.sendFile(__dirname+"/5DaysWeather.html")
 })
 
-app.post("/5daysWeather",function(req,res){
-    const query = req.body.cityName1;
-    const apiKey = "37b8ac2578a4715200e8300ccea8e007";
-    const unit = "metric";
-    const url = "https://api.openweathermap.org/data/2.5/forecast?q="+query+"&appid="+apiKey+"&units="+unit;
+// app.post("/5daysWeather",function(req,res){
+//     const query = req.body.cityName1;
+//     const apiKey = "37b8ac2578a4715200e8300ccea8e007";
+//     const unit = "metric";
+//     const url = "https://api.openweathermap.org/data/2.5/forecast?q="+query+"&appid="+apiKey+"&units="+unit;
 
-    https.get(url,function(response){
-        response.on("data",function(data){
-            
-            const weatherData = JSON.parse(data.list);
+//     https.get(url,function(response){
+//         response.on("data",function(data){
+//             data.forEach(element => {
+                
+//                 const weatherData = JSON.parse(element);
 
-            const temp = weatherData.list[0].main.temp;
-            res.send(temp)
+//                 const temp = weatherData[element].list[element].main.temp;
+//                 res.send(temp);
+//                 // console.log(weatherData);
+//             });
+//             // const temp = weatherData.main.temp;
+//             // res.send(temp);
+
+
+            
             
 
             
-        })
-    })
+//         })
+//     })
     
     
 
-})
+// })
 
 
 
