@@ -3,6 +3,7 @@ const app = express();
 const https = require("https");
 const bodyParser = require("body-parser");
 const request = require("request");
+const { captureRejectionSymbol } = require("events");
 // const ejs = require("ejs");
 
 app.set("view engine","ejs");
@@ -18,6 +19,7 @@ app.get("/" , function(req,res){
 
 app.post("/",function(req,res){
     //console.log("post received");
+    console.log("helo");
     //console.log(req.body.cityName);
     const query = req.body.cityName;
     const apiKey = "37b8ac2578a4715200e8300ccea8e007";
@@ -59,41 +61,15 @@ app.post("/",function(req,res){
     
 });
 
-app.get("/5daysWeather",function(req,res){
-    res.sendFile(__dirname+"/5DaysWeather.html")
-})
-
-// app.post("/5daysWeather",function(req,res){
-//     const query = req.body.cityName1;
-//     const apiKey = "37b8ac2578a4715200e8300ccea8e007";
-//     const unit = "metric";
-//     const url = "https://api.openweathermap.org/data/2.5/forecast?q="+query+"&appid="+apiKey+"&units="+unit;
-
-//     https.get(url,function(response){
-//         response.on("data",function(data){
-//             data.forEach(element => {
-                
-//                 const weatherData = JSON.parse(element);
-
-//                 const temp = weatherData[element].list[element].main.temp;
-//                 res.send(temp);
-//                 // console.log(weatherData);
-//             });
-//             // const temp = weatherData.main.temp;
-//             // res.send(temp);
-
-
-            
-            
-
-            
-//         })
-//     })
+// app.get("/currentWeather",function(req,res){
+//     res.sendFile(__dirname+"defaultLocation.html");
     
-    
-
 // })
 
+// app.post("/currentWeather",function(req,res){
+    
+    
+// })
 
 
 
