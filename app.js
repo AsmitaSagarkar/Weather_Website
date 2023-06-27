@@ -4,7 +4,7 @@ const https = require("https");
 const bodyParser = require("body-parser");
 // const request = require("request");
 // const { captureRejectionSymbol } = require("events");
-// const ejs = require("ejs");
+const ejs = require("ejs");
 const axios = require("axios");
 
 app.set("view engine", "ejs");
@@ -72,22 +72,40 @@ app.post("/5days", function (req, res) {
     axios.get(url)
         .then((response) => {
             const forecastData = response.data;
+            console.log(forecastData);
 
+            forecastData.forEach(element => {
+
+               const temp = forecastData.list[element].main.temp; 
+               console.log(temp);
+            });
+            // const temp = forecastData.list[0].main.temp;
+            
+            // console.log(temp);
+            // res.send(temp);
             // Access and process the forecast data as needed
+            const arr =[];
             for (let index = 0; index < 40; index++) {
+
+                // console.log(response.statusCode);
                 const temp = forecastData.list[index].main.temp;
                 const feels_like =forecastData.list[index].main.feels_like;
                 const temp_min=forecastData.list[index].main.temp_min;
                 const temp_max=forecastData.list[index].main.temp_max;
                 const humidity = forecastData.list[index].main.humidity;
                 const weather = forecastData.list[index].weather[0].main;
-                const weatherDescription = list[index].weather[0].description
+                const weatherDescription = forecastData.list[index].weather[0].description;
+
+
+                arr.push(temp,feels_like,temp_min,temp_max,humidity,weather,weatherDescription);
                 
-                // console.log(temp);
             }
+            
+           
         })
         .catch((error) => {
             console.error('An error occurred:', error);
+            
         });
 });
 
