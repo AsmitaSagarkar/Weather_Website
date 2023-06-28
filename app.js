@@ -41,7 +41,7 @@ app.post("/", function (req, res) {
             const humidity = weatherData.main.humidity;
             const weatherDescription = weatherData.weather[0].description;
             const icon = weatherData.weather[0].icon;
-            const imageUrl = " http://openweathermap.org/img/wn/" + icon + "@2x.png";
+            const imageUrl = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
 
             res.write("<h1>The temperature in " + query + " is " + temp + " degree celcius </h1>");
             res.write("<h3>Weather description :  " + weatherDescription + "</h3>");
@@ -60,6 +60,9 @@ app.post("/", function (req, res) {
 
 });
 
+function getWeatherIconUrl(iconCode) {
+  return `https://openweathermap.org/img/wn/${iconCode}.png`;
+}
 app.get("/5days", function (req, res) {
     res.sendFile(__dirname + "/5DaysWeather.html");
 });
@@ -71,35 +74,84 @@ app.post("/5days", function (req, res) {
     const url = "https://api.openweathermap.org/data/2.5/forecast?q=" + query + "&appid=" + apiKey + "&units=" + unit;
     axios.get(url)
         .then((response) => {
-            const forecastData = response.data;
-            console.log(forecastData);
+            const forecastData = response.data.list.slice(0,40);
+            // console.log(forecastData);
+            // console.log(forecastData);
 
-            forecastData.forEach(element => {
+            // forecastData.forEach(element => {
 
-               const temp = forecastData.list[element].main.temp; 
-               console.log(temp);
-            });
+            //    const temp = forecastData.list[element].main.temp; 
+            //    console.log(temp);
+            // });
             // const temp = forecastData.list[0].main.temp;
             
             // console.log(temp);
             // res.send(temp);
             // Access and process the forecast data as needed
-            const arr =[];
-            for (let index = 0; index < 40; index++) {
+            // const arr =[];
+            // for (let index = 0; index < 40; index++) {
 
                 // console.log(response.statusCode);
-                const temp = forecastData.list[index].main.temp;
-                const feels_like =forecastData.list[index].main.feels_like;
-                const temp_min=forecastData.list[index].main.temp_min;
-                const temp_max=forecastData.list[index].main.temp_max;
-                const humidity = forecastData.list[index].main.humidity;
-                const weather = forecastData.list[index].weather[0].main;
-                const weatherDescription = forecastData.list[index].weather[0].description;
+                // const temp = forecastData.list[1].main.temp;
+                // const feels_like =forecastData.list[1].main.feels_like;
+                // const temp_min=forecastData.list[1].main.temp_min;
+                // const temp_max=forecastData.list[1].main.temp_max;
+                // const humidity = forecastData.list[1].main.humidity;
+                // const weather = forecastData.list[1].weather[0].main;
+                // const weatherDescription = forecastData.list[1].weather[0].description;
+
+                // res.write("="+temp.toString());
+                // res.write("="+feels_like.toString());
+                // res.write("="+temp_min.toString());
+                // res.write("="+temp_max.toString());
+                // res.write("="+humidity.toString());
+                // res.write("="+weather.toString());
+                // res.write("="+weatherDescription.toString());
+                // res.send();
+
+            //     arr.push(temp,feels_like,temp_min,temp_max,humidity,weather,weatherDescription);
 
 
-                arr.push(temp,feels_like,temp_min,temp_max,humidity,weather,weatherDescription);
+            const forecastItem = forecastData.map(forecast=>({
+                timestamp: forecast.dt_txt,
+                temp : forecast.main.temp,
+                feels_like :forecast.main.feels_like,
+                temp_min:forecast.main.temp_min,
+                temp_max:forecast.main.temp_max,
+                humidity : forecast.main.humidity,
+                weather : forecast.weather[0].main,
+                weatherDescription : forecast.weather[0].description,
+                // icon1 : forecast.weather[0].icon,
+                // imageUrl : `https://openweathermap.org/img/wn/${icon1}.png`
+                weatherIcon: getWeatherIconUrl(forecast.weather[0].icon),
                 
-            }
+              }));
+
+            res.send(`<html>
+            <head>
+              <title>Weather Forecast</title>
+            </head>
+            <body>
+              <h1>Weather Forecast</h1>
+              <ul>
+                ${forecastItem.map(forecast => `
+                  <li>
+                    <strong>Timestamp:</strong> ${forecast.timestamp}<br>
+                    <strong>Temperature:</strong> ${forecast.temp}K<br>
+                    <strong>Feels Like:</strong> ${forecast.feels_like}K<br>
+                    <strong>Minimum Temperature:</strong> ${forecast.temp_min}K<br>
+                    <strong>Maximum Temperature:</strong> ${forecast.temp_max}K<br>
+                    <strong>Humidity:</strong> ${forecast.humidity}K<br>
+                    <strong>Weather:</strong> ${forecast.weather}K<br>
+                    <strong>Description:</strong> ${forecast.weatherDescription}
+                    <img src="${forecast.weatherIcon}" alt="${forecast.weatherDescription}">
+                  </li>
+                `).join('')}
+              </ul>
+            </body>
+          </html>`)
+                
+            // }
             
            
         })
