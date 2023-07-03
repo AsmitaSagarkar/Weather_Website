@@ -7,15 +7,14 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const axios = require("axios");
 
-app.set("view engine", "ejs");
+app.set("view engine", 'ejs');
 app.use(express.static("public"));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", function (req, res) {
-    res.sendFile(__dirname + "/index.html");
+    res.render("main");
 });
-
 
 
 app.post("/", function (req, res) {
@@ -43,15 +42,27 @@ app.post("/", function (req, res) {
             const icon = weatherData.weather[0].icon;
             const imageUrl = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
 
-            res.write("<h1>The temperature in " + query + " is " + temp + " degree celcius </h1>");
-            res.write("<h3>Weather description :  " + weatherDescription + "</h3>");
-            res.write("<h3>Feels like :  " + feels_like + "</h3>");
-            res.write("<h3>Minimum Temperature :  " + min_temp + "degree celcius</h3>");
-            res.write("<h3>Maximum Temperature :  " + max_temp + "degree celcius</h3>");
-            // res.write("<h3>Pressure :  " + pressure + "</h3>");
-            res.write("<h3>Humidity :  " + humidity + "</h3>");
-            res.write("<img src = " + imageUrl + ">");
-            res.send();
+            res.render("current",{
+              query:query,
+              temp:temp,
+              weatherDescription:weatherDescription,
+              feels_like:feels_like,
+              min_temp:min_temp,
+              max_temp:max_temp,
+              
+              humidity:humidity,
+              imageUrl:imageUrl
+            });
+
+            // res.write("<h1>The temperature in " + query + " is " + temp + " degree celcius </h1>");
+            // res.write("<h3>Weather description :  " + weatherDescription + "</h3>");
+            // res.write("<h3>Feels like :  " + feels_like + "</h3>");
+            // res.write("<h3>Minimum Temperature :  " + min_temp + "degree celcius</h3>");
+            // res.write("<h3>Maximum Temperature :  " + max_temp + "degree celcius</h3>");
+            // // res.write("<h3>Pressure :  " + pressure + "</h3>");
+            // res.write("<h3>Humidity :  " + humidity + "</h3>");
+            // res.write("<img src = " + imageUrl + ">");
+            // res.send();
 
         });
     });
@@ -64,7 +75,7 @@ function getWeatherIconUrl(iconCode) {
   return `https://openweathermap.org/img/wn/${iconCode}.png`;
 }
 app.get("/5days", function (req, res) {
-    res.sendFile(__dirname + "/5DaysWeather.html");
+    res.render("5days")
 });
 
 app.post("/5days", function (req, res) {
@@ -74,6 +85,7 @@ app.post("/5days", function (req, res) {
     const url = "https://api.openweathermap.org/data/2.5/forecast?q=" + query + "&appid=" + apiKey + "&units=" + unit;
     axios.get(url)
         .then((response) => {
+          // console.log(response.statusCode);
             const forecastData = response.data.list.slice(0,40);
             // console.log(forecastData);
             // console.log(forecastData);
@@ -127,31 +139,45 @@ app.post("/5days", function (req, res) {
                 
               }));
 
-            res.send(`<html>
-            <head>
-              <title>Weather Forecast</title>
-            </head>
-            <body>
-              <h1>Weather Forecast</h1>
-              <ul>
-                ${forecastItem.map(forecast => `
-                  <li>
-                    <strong>Timestamp:</strong> ${forecast.timestamp}<br>
-                    <strong>Temperature:</strong> ${forecast.temp}K<br>
-                    <strong>Feels Like:</strong> ${forecast.feels_like}K<br>
-                    <strong>Minimum Temperature:</strong> ${forecast.temp_min}K<br>
-                    <strong>Maximum Temperature:</strong> ${forecast.temp_max}K<br>
-                    <strong>Humidity:</strong> ${forecast.humidity}K<br>
-                    <strong>Weather:</strong> ${forecast.weather}K<br>
-                    <strong>Description:</strong> ${forecast.weatherDescription}
-                    <img src="${forecast.weatherIcon}" alt="${forecast.weatherDescription}">
-                  </li>
-                `).join('')}
-              </ul>
-            </body>
-          </html>`)
+          //   res.send(`<html>
+          //   <head>
+          //     <title>Weather Forecast</title>
+          //   </head>
+          //   <body>
+          //     <h1>Weather Forecast</h1>
+          //     <ul>
+          //       ${forecastItem.map(forecast => `
+          //         <li>
+          //           <strong>Timestamp:</strong> ${forecast.timestamp}<br>
+          //           <strong>Temperature:</strong> ${forecast.temp}K<br>
+          //           <strong>Feels Like:</strong> ${forecast.feels_like}K<br>
+          //           <strong>Minimum Temperature:</strong> ${forecast.temp_min}K<br>
+          //           <strong>Maximum Temperature:</strong> ${forecast.temp_max}K<br>
+          //           <strong>Humidity:</strong> ${forecast.humidity}K<br>
+          //           <strong>Weather:</strong> ${forecast.weather}K<br>
+          //           <strong>Description:</strong> ${forecast.weatherDescription}
+          //           <img src="${forecast.weatherIcon}" alt="${forecast.weatherDescription}">
+          //         </li>
+          //       `).join('')}
+          //     </ul>
+          //   </body>
+          // </html>`)
                 
             // }
+            res.render("5daysdisplay",{
+              // timestamp:timestamp,
+              // temp:temp,
+              // feels_like:feels_like,
+              // temp_min:temp_min,
+              // temp_max:temp_max,
+              // humidity:humidity,
+              // weatherDescription:weatherDescription,
+              // weatherIcon:weatherIcon,
+              // weatherDescription:weatherDescription
+              forecastItem:forecastItem
+
+
+            })
             
            
         })
