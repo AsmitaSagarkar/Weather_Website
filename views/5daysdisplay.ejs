@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="/style.css">
+
+<h1>Weather Forecast</h1>
+              <ul>
+                <%  forecastItem.map(forecast => {%>
+                  <li>
+                    <strong>Timestamp:</strong> <%=forecast.timestamp%><br>
+                    <strong>Temperature:</strong> <%=forecast.temp%>K<br>
+                    <strong>Feels Like:</strong> <%=forecast.feels_like%>K<br>
+                    <strong>Minimum Temperature:</strong> <%=forecast.temp_min%>K<br>
+                    <strong>Maximum Temperature:</strong> <%=forecast.temp_max%>K<br>
+                    <strong>Humidity:</strong> <%=forecast.humidity%>K<br>
+                    <strong>Weather:</strong> <%=forecast.weather%>K<br>
+                    <strong>Description:</strong> <%=forecast.weatherDescription%>
+                    <img src="<%=forecast.weatherIcon%>" alt="<%=forecast.weatherDescription%>">
+                  </li>
+               <% }).join('')%>
+              </ul>
