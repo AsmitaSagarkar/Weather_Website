@@ -3,4 +3,8 @@ body{
     padding : 0;
     box-sizing: border-box;
     /* background-image: ; */
+    background-color: aqua;
+}
+strong{
+    color: blue;
 }
