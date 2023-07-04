@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/style.css">
+<%- include("partials/header") -%>
 
 
 <h1>The temperature in  <%=query%>  is   <%=temp%> degree celcius</h1>
@@ -8,3 +8,4 @@
 <h3>Maximum Temperature :  <%=max_temp%> celcius</h3>
 <h3>Humidity :  <%=humidity%></h3>
 <img src = <%=imageUrl%> >
+<%- include("partials/footer") -%>
