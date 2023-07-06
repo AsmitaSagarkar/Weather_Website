@@ -16,6 +16,8 @@ app.get("/", function (req, res) {
     res.render("main");
 });
 
+const about = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde perspiciatis natus harum voluptatem quibusdam adipisci, enim deleniti molestiae explicabo beatae. Culpa, iusto! Vero officia libero, adipisci deleniti dolores perferendis suscipit quos excepturi atque quisquam cumque exercitationem quae velit itaque neque. Voluptates totam soluta officiis. Sed, exercitationem corporis. Provident voluptatibus nobis vitae nisi iusto a deleniti vero, beatae, aut, libero amet explicabo necessitatibus! Harum aperiam, voluptatum similique odio distinctio error deserunt delectus cupiditate aspernatur molestias adipisci cum atque ducimus repellendus eaque deleniti quae eos doloribus magni architecto maxime omnis sapiente molestiae corporis? Maiores est praesentium repudiandae dicta explicabo numquam quos laborum?"
+
 
 app.post("/", function (req, res) {
 
@@ -186,6 +188,15 @@ app.post("/5days", function (req, res) {
             
         });
 });
+// app.get("/about",function(res,req){
+
+//     res.render("about");
+// })
+app.get("/about",function(req,res){
+    res.render("about",{
+        about:about
+    })
+})
 
 
 
