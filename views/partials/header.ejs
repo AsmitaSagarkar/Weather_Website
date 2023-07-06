@@ -5,32 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Forecasting</title>
-    <link rel="stylesheet" href="/styles/style.css" type="text/css">
+    
+    <!-- bootstrap cdn css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="/styles/style.css" type="text/css">
 </head>
 
 
 <body>
     
-    <nav class="navbar navbar-light bg-light">
-        <span class="navbar-brand">
-            <img src="/images/header_icon.png" width="30" height="30" class="d-inline-block align-top" alt="">
+    <nav class="navbar">
+        <span class="navbar-brand img">
+            
+            <ion-icon class="d-inline-block align-top" name="cloudy-night-outline"></ion-icon>
             Weather Forecasting
         </span>
         <span class="main">
-        <span id="clock"></span>
-        <span>Home</span>
+        <!-- <span id="clock"></span> -->
+        <span><a class="text" href="/">Home</a></span>
+        <span><a class="text" href="/about">About</a></span>
         <span class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               services
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="/">Current Forecast</a>
-              <a class="dropdown-item" href="#">3 Hours Forecast For 5 Days</a>
+              <a class="dropdown-item" href="/5days">3 Hours Forecast For 5 Days</a>
               
             </div>
         </span>
-        <span>About</span>
+        
     </span>
     
 </nav>
