@@ -2,20 +2,29 @@ body{
     margin:0;
     padding : 0;
     box-sizing: border-box;
-    background-image: url("/images/background.jpg");
+   
     /* background-image: ; */
+    /* width: 100%;
+    height: auto;
     
     overflow-x: hidden;
     background-repeat: no-repeat;
-    /* height: 100%; */
+    /* height: 100%; 
     background-size: cover;
-    image-resolution: from-image;
+    image-resolution: from-image; */
+    overflow: hidden;
    
 }
+.whole{
+    background-image: url("/images/background.jpg");
+    height: 900px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 @media(max-width:60rem){
-    body{
-        background-size: auto;
-        overflow-x: hidden;
+    .whole{
+        height: 1000px;
     }
 }
 
