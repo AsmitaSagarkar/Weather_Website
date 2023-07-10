@@ -1,10 +1,10 @@
 <%- include("partials/header") -%>
-<div class="main">
+<div class="common">
     <form action="/5Days" method="post" class="form">
-    <label for="cityInput">City Name : </label>
-    <input type="text" name="cityName" id = "cityInput">
+    <label for="cityInput" class="city">City Name : </label>
+    <input type="text" name="cityName" id = "cityInput"class="input">
 
     <h3 id="temp"></h3>
-    <button type="submit">Go</button>
+    <button type="submit" class="submit">Go</button>
 </div>
 <%- include("partials/footer") -%>
