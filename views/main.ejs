@@ -1,12 +1,15 @@
 <%- include("partials/header") -%>
 <!-- <link rel="stylesheet" href="/style.css"> -->
+
 <div class="common">
 
     <form action="/" method="post" class="form">
         <label for="cityInput"class="city">City Name : </label>
         <input type="text" name="cityName" id = "cityInput" class="input">
-        <button type="submit" class="submit">Go</button>
-        <button><a href="/5Days">click here</a></button>
+        <button type="submit" class="btn">Go</button>
+        <h3 class="msg">Click here to check the forecast of every 3 Hours for next 5 Days 👇</h3>
+        <button class="btn"><a href="/5Days">Click Here</a></button>
 </div>
+
 
 <%- include("partials/footer") -%>
