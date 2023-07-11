@@ -1,4 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Caprasimo&family=Caveat:wght@500;600&family=Dancing+Script:wght@500&family=M+PLUS+1p:wght@100&family=Merriweather+Sans:wght@800&family=Merriweather:wght@300;400&family=Montserrat:wght@700&family=Open+Sans&family=Patua+One&family=Playfair+Display:wght@500&family=Red+Hat+Display:wght@300&family=Roboto&family=Roboto+Slab:wght@300&family=Sacramento&display=swap');
+
+
+
 body {
+    font-family: 'Caprasimo', cursive;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -12,15 +17,19 @@ body {
     image-resolution: from-image; */
     overflow-x: hidden;
     overflow-y: scroll;
-
+background: transparent;
 }
 
 .whole {
     background-image: url("/images/background.jpg");
+    /* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkM0QEsjekUFh4bR1PsDf1bieJHvLsJrsmLZ3FyYXwHpBsglgbhMYZaCvvHR69xJkZTys&usqp=CAU"); */
     height: 100vh;
     width: 100%;
     background-repeat: no-repeat;
     background-size: cover;
+    /* background: transparent; */
+    
+    background-position:50% 50%;
     /* background-attachment: fixed; */
 }
 
@@ -35,17 +44,18 @@ body {
     color: aliceblue;
 }
 
+
 .main {
     display: flex;
     padding-right: 25px;
     padding-top: 10px;
-    font-size: 25px;
-    gap: 15px;
+    font-size: 30px;
+    gap: 20px;
 }
 
 span.navbar-brand {
     /* color: aliceblue; */
-    font-size: 25px;
+    font-size: 30px;
 }
 
 .icon {
@@ -84,9 +94,12 @@ div.dropdown-menu.show {
 
 .text {
     color: aliceblue;
+    
 }
 
+
 .text:hover {
+    
     color: aliceblue;
     cursor: pointer;
     text-decoration: none;
@@ -97,20 +110,27 @@ div.dropdown-menu.show {
         display: block;
         z-index: 10;
     }
+    span.navbar-brand{
+        font-size: 20px;
+    }
+    
 
     .main {
+        font-size: 18px;
+        
         flex-direction: column;
         align-items: center;
+        padding-left: 30px;
         margin-top: 0;
         padding-top: 0;
-        padding-left: 0;
+        /* padding-left: 0; */
         gap: 1rem;
         margin-top: 200px;
         position: absolute;
         right: 0;
         /* text-align: center; */
 
-        width: 20%;
+        width: 30%;
         height: auto;
         box-shadow: inset 0 0 3rem rgba(0, 0, 0, 0.5);
         position: fixed;
@@ -157,29 +177,104 @@ div.dropdown-menu.show {
 /*main*/
 .container{
     width: fit-content;
+    display: block;
+    margin: auto;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
     
 }
 .common{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
-    margin-top: 30%;
-    padding: 40px;
-    border: 2px solid black;
+    /* margin: -25px 0 0 -25px; */
+    /* margin-top: 30%; */
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50px;
+    
 }
 .city{
     display: block;
+    color: aliceblue;
+    font-size: 30px;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    
 }
 .input{
     display: block;
     border-radius: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    color: aliceblue;
+    border: 2px solid aliceblue;
+    margin-bottom: 20px;
 }
-.submit{
+.msg{
+    color: aliceblue;
+    letter-spacing: 2px;
     display: block;
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 20px;
+
+}
+/* .submit{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+} */
+.btn{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: aliceblue;
+    font-size: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    letter-spacing: 2px;
+    border-radius: 50px;
+
+}
+.btn:hover{
+    background-color: black;
+}
+.btn a{
+    color: aliceblue;
+    letter-spacing: 2px;
+}
+.btn a:hover{
+    text-decoration: none;
+}
+
+.clock{
+    color: aliceblue;
+    font-size: 25px;
+    letter-spacing: 2px;
+}
+
+
+.footer{
+    color: aliceblue;
+    font-size: 25px;
+    letter-spacing: 2px;
+    
+
 }
 footer {
+    margin-bottom: 10px;
     text-align: center;
     position: fixed;
 
@@ -187,4 +282,29 @@ footer {
     bottom: 0;
     width: 100%;
     height: 60px;
+    /* background-color: rgba(0,0,0,0.5); */
+}
+input[type = "text"]{
+    color: black;
+    
+    text-align: center;
+}
+@media (max-width : 60rem){
+    .btn{
+        font-size: 15px;
+    }
+    .city{
+        font-size: 20px;
+    }
+    .msg{
+        font-size: 15px;
+    }
+    .clock{
+        font-size: 20px;
+
+    }
+    .footer{
+        font-size: 20px;
+    }
+
 }
