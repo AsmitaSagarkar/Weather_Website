@@ -25,6 +25,15 @@ app.post("/", function (req, res) {
     const query = req.body.cityName;
     const apiKey = "37b8ac2578a4715200e8300ccea8e007";
     const unit = "metric";
+    const options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      };
+    const date  = new Date().toLocaleDateString("en-US", options);
+    const time  = new Date().toLocaleTimeString("en-US")
+    
 
     const url = "https://api.openweathermap.org/data/2.5/weather?q=" + query + "&appid=" + apiKey + "&units=" + unit;
 
@@ -45,6 +54,8 @@ app.post("/", function (req, res) {
             const imageUrl = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
 
             res.render("current",{
+                date:date,
+                time:time,
               query:query,
               temp:temp,
               weatherDescription:weatherDescription,
