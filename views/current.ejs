@@ -1,12 +1,30 @@
 <%- include("partials/header") -%>
+<div class="current">
 
-<h1><%=date%></h1>
-<h1><%=time%></h1>
-<h1>The temperature in  <%=query%>  is   <%=temp%> degree celcius</h1>
-<h3>Weather description :  <%=weatherDescription%></h3>
-<h3>Feels like :  <%=feels_like%></h3>
-<h3>Minimum Temperature :  <%=min_temp%> celcius</h3>
-<h3>Maximum Temperature :  <%=max_temp%> celcius</h3>
-<h3>Humidity :  <%=humidity%></h3>
+<h3><%=date%></h3>
+<!-- <h3><%=time%></h3> -->
+<h3><%=query%></h3>
+<div class="temp">
+<h3><i class="fa-solid fa-temperature-three-quarters"></i> <%=temp%>°C</h3>
+</div>
+<div class="decription">
+<h3><%=weatherDescription%></h3>
+</div>
 <img src = <%=imageUrl%> >
+<div class="rest">
+    <ul class="item">
+        
+        <li>Min<%=max_temp%>°C</li>
+        <li>Max<%=min_temp%>°C</li>
+        <li>Humidity<%=humidity%></li>
+        <li>Feels like<%=feels_like%></li>
+    </ul>
+</div>
+<!-- <h3><%=min_temp%>°C</h3>
+<h3><%=max_temp%>°C</h3>
+<h3><%=humidity%></h3>
+<h3><%=feels_like%></h3> -->
+
+
 <%- include("partials/footer") -%>
+</div>
