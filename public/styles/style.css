@@ -308,3 +308,46 @@ input[type = "text"]{
     }
 
 }
+.current{
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    color: aliceblue;
+    border-radius: 50px;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+@media (max-width:60rem){
+    .current{
+        margin-top: 20px;
+        padding-left: 90px;
+        padding-right: 90px;
+        margin-bottom: 20px;
+        /* padding-bottom: 40px; */
+    }
+}
+.temp{
+    display: inline-flex;
+
+}
+.decription{
+    float: right;
+}
+.rest{
+    display: inline;
+}
+.item
+{
+    list-style: none;
+}
+img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+li{
+    display: inline-block;
+    
+}
