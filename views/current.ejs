@@ -1,23 +1,24 @@
 <%- include("partials/header") -%>
 <div class="current">
 
-<h3><%=date%></h3>
+<h3><%=date.toUpperCase()%></h3>
 <!-- <h3><%=time%></h3> -->
-<h3><%=query%></h3>
+<h3><%=query.toUpperCase()%></h3>
 <div class="temp">
 <h3><i class="fa-solid fa-temperature-three-quarters"></i> <%=temp%>°C</h3>
+<h3><%=weatherDescription.toUpperCase()%></h3>
 </div>
-<div class="decription">
+<!-- <div class="decription">
 <h3><%=weatherDescription%></h3>
-</div>
+</div> -->
 <img src = <%=imageUrl%> >
 <div class="rest">
     <ul class="item">
         
-        <li>Min<%=max_temp%>°C</li>
-        <li>Max<%=min_temp%>°C</li>
-        <li>Humidity<%=humidity%></li>
-        <li>Feels like<%=feels_like%></li>
+        <li>MIN : <%=max_temp%>°C</li>
+        <li>MAX : <%=min_temp%>°C</li>
+        <li>HUMIDITY : <%=humidity%>%</li>
+        <li>FEELS LIKE : <%=feels_like%></li>
     </ul>
 </div>
 <!-- <h3><%=min_temp%>°C</h3>
