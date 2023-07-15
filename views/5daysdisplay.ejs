@@ -1,20 +1,33 @@
 <%- include("partials/header") -%>
+  <style>
+    .whole {
+      height: auto;
+    }
+
+    .container {
+      display: inline;
+    }
+  </style>
+
+  <ul class="ul">
+    <% forecastItem.map(forecast=> {%>
+      <li class="days5">
+        <span><%=forecast.timestamp%><br></span>
+      <span><%=forecast.query%><br></span>
+      <span><%=forecast.temp%>°C<br></span>
+      <span><%=forecast.weather%><br></span>
+                <span>(<%=forecast.weatherDescription%>)</span>
+                  <span><img src="<%=forecast.weatherIcon%>" alt="<%=forecast.weatherDescription%>"></span>
+                  
+                  <span>Max : <%=forecast.temp_max%>°C<br></span>
+                  <span>Min : <%=forecast.temp_min%>°C<br></span>
+                  
+                  <span>Humidity : <%=forecast.humidity%>%<br></span>
+                  <span>Feels Like : <%=forecast.feels_like%>°C<br></span>
 
 
-              <ul>
-                <%  forecastItem.map(forecast => {%>
-                  <li>
-                    <strong>Timestamp:</strong> <%=forecast.timestamp%><br>
-                    <strong>Temperature:</strong> <%=forecast.temp%>K<br>
-                    <strong>Feels Like:</strong> <%=forecast.feels_like%>K<br>
-                    <strong>Minimum Temperature:</strong> <%=forecast.temp_min%>K<br>
-                    <strong>Maximum Temperature:</strong> <%=forecast.temp_max%>K<br>
-                    <strong>Humidity:</strong> <%=forecast.humidity%>K<br>
-                    <strong>Weather:</strong> <%=forecast.weather%>K<br>
-                    <strong>Description:</strong> <%=forecast.weatherDescription%>
-                    <img src="<%=forecast.weatherIcon%>" alt="<%=forecast.weatherDescription%>">
-                  </li>
-               <% }).join('')%>
-              </ul>
+      </li>
+      <% }).join('')%>
+  </ul>
 
-<%- include("partials/footer") -%>
+  <%- include("partials/footer") -%>
