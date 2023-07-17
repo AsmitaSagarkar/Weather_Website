@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Caprasimo&family=Caveat:wght@500;600&family=Dancing+Script:wght@500&family=M+PLUS+1p:wght@100&family=Merriweather+Sans:wght@800&family=Merriweather:wght@300;400&family=Montserrat:wght@700&family=Open+Sans&family=Patua+One&family=Playfair+Display:wght@500&family=Red+Hat+Display:wght@300&family=Roboto&family=Roboto+Slab:wght@300&family=Sacramento&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Belanosima&family=Caprasimo&family=Caveat:wght@500;600&family=Dancing+Script:wght@500&family=M+PLUS+1p:wght@100&family=Merriweather+Sans:wght@800&family=Merriweather:wght@300;400&family=Montserrat:wght@700&family=Open+Sans&family=Patua+One&family=Playfair+Display:wght@500&family=Red+Hat+Display:wght@300&family=Roboto&family=Roboto+Slab:wght@300&family=Sacramento&display=swap');
 
 
 
 body {
-    font-family: 'Caprasimo', cursive;
+    font-family: 'Belanosima', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -21,7 +21,7 @@ background: transparent;
 }
 
 .whole {
-    background-image: url("https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?cs=srgb&dl=pexels-johannes-plenio-1118873.jpg&fm=jpg");
+    background-image: url("/images/final_bg.jpg");
     /* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkM0QEsjekUFh4bR1PsDf1bieJHvLsJrsmLZ3FyYXwHpBsglgbhMYZaCvvHR69xJkZTys&usqp=CAU"); */
     height: 100vh;
     width: 100%;
@@ -263,6 +263,10 @@ div.dropdown-menu.show {
     color: aliceblue;
     font-size: 25px;
     letter-spacing: 2px;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 25px;
+
 }
 
 
@@ -274,6 +278,7 @@ div.dropdown-menu.show {
 
 }
 footer {
+    position:absolute;
     margin-bottom: 0px;
     text-align: center;
     /* position: fixed; */
