@@ -265,7 +265,9 @@ div.dropdown-menu.show {
     letter-spacing: 2px;
     position: absolute;
     bottom: 0;
+    left: 0;
     margin-bottom: 25px;
+    margin-left: 10px;
 
 }
 
@@ -392,4 +394,12 @@ li{
 }
 .para{
     justify-content: center;
+    color: aliceblue;
+    font-size: 20px;
+    letter-spacing: 2px;
+    text-justify: inter-word;
+    text-align: justify;
+}
+.about{
+    color: aliceblue;
 }
